@@ -1,0 +1,16 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.campo {
+  width: 100%;
+}
+
+.acciones-formulario {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}

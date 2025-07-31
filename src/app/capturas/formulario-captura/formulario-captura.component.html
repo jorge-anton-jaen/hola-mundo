@@ -1,0 +1,11 @@
+<form (ngSubmit)="onGuardar()">
+  <mat-form-field appearance="outline" class="campo">
+    <mat-label>Fecha de captura</mat-label>
+    <input matInput [(ngModel)]="captura.fechaCaptura" name="fechaCaptura" type="date" required>
+  </mat-form-field>
+  <!-- Aquí puedes añadir campos para gatos si lo necesitas -->
+  <div class="acciones-formulario">
+    <button mat-flat-button color="primary" type="submit">Guardar</button>
+    <button mat-button type="button" (click)="onCancelar()">Cancelar</button>
+  </div>
+</form>

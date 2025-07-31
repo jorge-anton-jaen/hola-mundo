@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Colonia } from '../../models/colonia.model';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { FormularioColoniaComponent } from '../formulario-colonia/formulario-colonia.component';
 
 @Component({
   selector: 'app-mantenimiento-colonias',
@@ -18,7 +20,9 @@ import { Colonia } from '../../models/colonia.model';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
+    FormularioColoniaComponent
   ],
   templateUrl: './mantenimiento-colonias.component.html',
   styleUrls: ['./mantenimiento-colonias.component.css']
@@ -26,12 +30,15 @@ import { Colonia } from '../../models/colonia.model';
 export class MantenimientoColoniasComponent {
   colonias: Colonia[] = [];
   coloniasFiltradas: Colonia[] = [];
+  dialog: MatDialog;
   filtroLocalizacion: string = '';
   columnas = ['localizacion', 'gatos', 'fechaInicio', 'fechaRevision', 'acciones'];
+  
 
-  constructor() {
+  constructor(private dialogParam: MatDialog) {
     this.colonias = [];
     this.coloniasFiltradas = this.colonias;
+    this.dialog = dialogParam;
   }
 
   filtrar() {
@@ -43,8 +50,15 @@ export class MantenimientoColoniasComponent {
   }
 
   abrirDialogoNuevaColonia() {
-    // Lógica para abrir un diálogo/modal para añadir una nueva colonia
-  }
+  const dialogRef = this.dialog.open(FormularioColoniaComponent, {
+    width: '400px'
+  });
+   dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      // Lógica para guardar la colonia
+    }
+  });
+}
 
   editarColonia(colonia: Colonia) {
     // Lógica para editar la colonia seleccionada
