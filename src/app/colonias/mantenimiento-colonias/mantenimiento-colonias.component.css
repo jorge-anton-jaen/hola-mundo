@@ -1,0 +1,39 @@
+/* mantenimiento-colonias.component.css */
+.contenedor-colonias {
+  margin: 32px auto;
+  max-width: 1100px;
+  padding: 0 24px;
+}
+
+.filtro-colonias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: flex-end;
+}
+
+table {
+  min-width: 600px;
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .contenedor-colonias {
+    padding: 0 8px;
+  }
+  table {
+    min-width: 400px;
+  }
+}
+
+@media (max-width: 600px) {
+  .filtro-colonias {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  table {
+    min-width: 300px;
+  }
+}

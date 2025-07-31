@@ -1,0 +1,51 @@
+<div class="contenedor-colonias">
+  <h1>Mantenimiento de Colonias</h1>
+  <p>Administra las colonias y sus gatos asociados.</p>
+  <div class="filtro-colonias">
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar por localización</mat-label>
+      <input matInput [(ngModel)]="filtroLocalizacion" (input)="filtrar()" placeholder="Localización">
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="abrirDialogoNuevaColonia()">
+      <mat-icon>add</mat-icon>
+      Añadir Colonia
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="coloniasFiltradas" class="mat-elevation-z8">
+    <ng-container matColumnDef="localizacion">
+      <th mat-header-cell *matHeaderCellDef>Localización</th>
+      <td mat-cell *matCellDef="let colonia">{{ colonia.localizacion }}</td>
+    </ng-container>
+    <ng-container matColumnDef="gatos">
+      <th mat-header-cell *matHeaderCellDef>Gatos</th>
+      <td mat-cell *matCellDef="let colonia">
+        <span *ngFor="let gato of colonia.gatos; let last = last">
+          {{ gato.nombre }}<span *ngIf="!last">, </span>
+        </span>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="fechaInicio">
+      <th mat-header-cell *matHeaderCellDef>Inicio</th>
+      <td mat-cell *matCellDef="let colonia">{{ colonia.fechaInicio | date }}</td>
+    </ng-container>
+    <ng-container matColumnDef="fechaRevision">
+      <th mat-header-cell *matHeaderCellDef>Revisión</th>
+      <td mat-cell *matCellDef="let colonia">{{ colonia.fechaRevision | date }}</td>
+    </ng-container>
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let colonia">
+        <button mat-icon-button color="primary" (click)="editarColonia(colonia)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="eliminarColonia(colonia)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+  </table>
+</div>
