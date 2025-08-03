@@ -1,6 +1,10 @@
 import { Captura } from './Captura.model';
 
-export type TipoUbicacion = 'Colonia' | 'Taller' | 'Via publica' | 'Domicilio';
+export enum TipoUbicacion {
+  Urbana = 'Urbana',
+  Industrial = 'Industrial',
+  Parque = 'Parque'
+}
 
 export interface Servicio {
   id: number;

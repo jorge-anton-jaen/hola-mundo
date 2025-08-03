@@ -1,11 +1,23 @@
-<form (ngSubmit)="onGuardar()">
-  <mat-form-field appearance="outline" class="campo">
-    <mat-label>Fecha de captura</mat-label>
-    <input matInput [(ngModel)]="captura.fechaCaptura" name="fechaCaptura" type="date" required>
-  </mat-form-field>
-  <!-- Aquí puedes añadir campos para gatos si lo necesitas -->
-  <div class="acciones-formulario">
-    <button mat-flat-button color="primary" type="submit">Guardar</button>
-    <button mat-button type="button" (click)="onCancelar()">Cancelar</button>
+<div class="modal fade show d-block" tabindex="-1" role="dialog" style="background: rgba(0,0,0,0.3);">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content shadow">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ captura?.id ? 'Editar Captura' : 'Nueva Captura' }}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="onCancelar()"></button>
+      </div>
+      <form (ngSubmit)="onGuardar()">
+        <div class="modal-body">
+          <div class="mb-3 campo">
+            <label class="form-label">Fecha de captura</label>
+            <input type="date" class="form-control" [(ngModel)]="captura.fechaCaptura" name="fechaCaptura" required>
+          </div>
+          <!-- Puedes añadir aquí más campos, por ejemplo para los gatos capturados -->
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit">Guardar</button>
+          <button class="btn btn-secondary" type="button" (click)="onCancelar()">Cancelar</button>
+        </div>
+      </form>
+    </div>
   </div>
-</form>
+</div>

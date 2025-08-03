@@ -2,50 +2,52 @@
   <h1>Mantenimiento de Colonias</h1>
   <p>Administra las colonias y sus gatos asociados.</p>
   <div class="filtro-colonias">
-    <mat-form-field appearance="outline">
-      <mat-label>Buscar por localización</mat-label>
-      <input matInput [(ngModel)]="filtroLocalizacion" (input)="filtrar()" placeholder="Localización">
-    </mat-form-field>
-    <button mat-flat-button color="primary" (click)="abrirDialogoNuevaColonia()">
-      <mat-icon>add</mat-icon>
+    <div class="mb-3">
+      <label class="form-label">Buscar por localización</label>
+      <input type="text" class="form-control" [(ngModel)]="filtroLocalizacion" (input)="filtrar()" placeholder="Localización">
+    </div>
+    <button class="btn btn-primary" (click)="abrirDialogoNuevaColonia()">
+      <i class="bi bi-plus"></i>
       Añadir Colonia
     </button>
   </div>
 
-  <table mat-table [dataSource]="coloniasFiltradas" class="mat-elevation-z8">
-    <ng-container matColumnDef="localizacion">
-      <th mat-header-cell *matHeaderCellDef>Localización</th>
-      <td mat-cell *matCellDef="let colonia">{{ colonia.localizacion }}</td>
-    </ng-container>
-    <ng-container matColumnDef="gatos">
-      <th mat-header-cell *matHeaderCellDef>Gatos</th>
-      <td mat-cell *matCellDef="let colonia">
-        <span *ngFor="let gato of colonia.gatos; let last = last">
-          {{ gato.nombre }}<span *ngIf="!last">, </span>
-        </span>
-      </td>
-    </ng-container>
-    <ng-container matColumnDef="fechaInicio">
-      <th mat-header-cell *matHeaderCellDef>Inicio</th>
-      <td mat-cell *matCellDef="let colonia">{{ colonia.fechaInicio | date }}</td>
-    </ng-container>
-    <ng-container matColumnDef="fechaRevision">
-      <th mat-header-cell *matHeaderCellDef>Revisión</th>
-      <td mat-cell *matCellDef="let colonia">{{ colonia.fechaRevision | date }}</td>
-    </ng-container>
-    <ng-container matColumnDef="acciones">
-      <th mat-header-cell *matHeaderCellDef>Acciones</th>
-      <td mat-cell *matCellDef="let colonia">
-        <button mat-icon-button color="primary" (click)="editarColonia(colonia)">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button color="warn" (click)="eliminarColonia(colonia)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Localización</th>
+        <th>Gatos</th>
+        <th>Inicio</th>
+        <th>Revisión</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let colonia of coloniasFiltradas">
+        <td>{{ colonia.localizacion }}</td>
+        <td>
+          <span *ngFor="let gato of colonia.gatos; let last = last">
+            {{ gato.nombre }}<span *ngIf="!last">, </span>
+          </span>
+        </td>
+        <td>{{ colonia.fechaInicio | date }}</td>
+        <td>{{ colonia.fechaRevision | date }}</td>
+        <td>
+          <button class="btn btn-sm btn-outline-primary me-1" (click)="editarColonia(colonia)">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-danger" (click)="eliminarColonia(colonia)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
   </table>
+
+  <app-formulario-colonia
+    *ngIf="mostrarFormularioColonia"
+    [colonia]="coloniaEditando"
+    (guardar)="guardarColonia($event)"
+    (cancelar)="cerrarFormularioColonia()">
+  </app-formulario-colonia>
 </div>

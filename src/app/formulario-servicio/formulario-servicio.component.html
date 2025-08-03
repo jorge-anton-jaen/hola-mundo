@@ -1,0 +1,54 @@
+<div class="modal fade show d-block" tabindex="-1" role="dialog" style="background: rgba(0,0,0,0.3);">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content shadow">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ servicio?.id ? 'Editar Servicio' : 'Nuevo Servicio' }}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="onCancelar()"></button>
+      </div>
+      <form (ngSubmit)="onGuardar()">
+        <div class="modal-body">
+          <div class="mb-3 campo">
+            <label class="form-label">Aviso</label>
+            <input type="text" class="form-control" [(ngModel)]="servicio.aviso" name="aviso" required>
+          </div>
+          <div class="mb-3 campo">
+            <label class="form-label">Fecha de inicio</label>
+            <input type="date" class="form-control" [(ngModel)]="servicio.fechaInicio" name="fechaInicio" required> 
+          </div>
+          <div class="mb-3 campo">
+            <label class="form-label">Fecha de fin</label>
+            <input type="date" class="form-control" [(ngModel)]="servicio.fechaFin" name="fechaFin" required>
+          </div>
+          <div class="mb-3 campo">
+            <label class="form-label">Población</label>
+            <input type="text" class="form-control" [(ngModel)]="servicio.poblacion" name="poblacion" required>
+          </div>
+          <div class="mb-3 campo">
+            <label class="form-label">Dirección</label>
+            <input type="text" class="form-control" [(ngModel)]="servicio.direccion" name="direccion">
+          </div>
+          <div class="mb-3 campo">
+            <label class="form-label">Ubicación</label>
+            <input type="text" class="form-control" [(ngModel)]="servicio.ubicacion" name="ubicacion">
+          </div>
+          <div class="mb-3 campo">
+            <label class="form-label">Tipo de Ubicación</label>
+            <select class="form-select" [(ngModel)]="servicio.tipoUbicacion" name="tipoUbicacion">
+              <option value="Urbana">Urbana</option>
+              <option value="Industrial">Industrial</option>
+              <option value="Parque">Parque</option>
+            </select>
+          </div>
+          <div class="mb-3 campo">
+            <label class="form-label">Código Postal</label>
+            <input type="text" class="form-control" [(ngModel)]="servicio.codigoPostal" name="codigoPostal">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit">Guardar</button>
+          <button class="btn btn-secondary" type="button" (click)="onCancelar()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

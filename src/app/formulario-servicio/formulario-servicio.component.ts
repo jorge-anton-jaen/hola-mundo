@@ -3,27 +3,34 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-formulario-captura',
+  selector: 'app-formulario-servicio',
   standalone: true,
   imports: [
     CommonModule,
     FormsModule
   ],
-  templateUrl: './formulario-captura.component.html',
-  styleUrls: ['./formulario-captura.component.css']
+  templateUrl: './formulario-servicio.component.html',
+  styleUrls: ['./formulario-servicio.component.css']
 })
-export class FormularioCapturaComponent {
-  @Input() captura: any = {
+export class FormularioServicioComponent {
+  @Input() servicio: any = {
     id: null,
-    fechaCaptura: '',
-    gatos: []
+    aviso: '',
+    fechaInicio: '',
+    fechaFin: '',
+    poblacion: '',
+    direccion: '',
+    ubicacion: '',
+    tipoUbicacion: '',
+    codigoPostal: '',
+    capturas: []
   };
 
   @Output() guardar = new EventEmitter<any>();
   @Output() cancelar = new EventEmitter<void>();
 
   onGuardar() {
-    this.guardar.emit(this.captura);
+    this.guardar.emit(this.servicio);
   }
 
   onCancelar() {

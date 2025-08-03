@@ -193,17 +193,33 @@ a.active-link {
 <!-- Barra de menú de navegación -->
  
 
-<mat-toolbar color="primary">
-  <span class="app-title">Capturas App</span>
-  <span class="spacer"></span>
-  <a mat-button routerLink="/servicios" routerLinkActive="active-link">Servicios</a>
-  <a mat-button routerLink="/capturas" routerLinkActive="active-link">Capturas</a>
-  <a mat-button routerLink="/colonias" routerLinkActive="active-link">Colonias</a>
-  <a mat-button routerLink="/fichas" routerLinkActive="active-link">Fichas</a>
-  <a mat-button routerLink="/admin" routerLinkActive="active-link">Admin</a> <!-- Nuevo botón -->
-</mat-toolbar>
-
-
-
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+  <div class="container-fluid">
+    <span class="navbar-brand app-title">Capturas App</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/servicios" routerLinkActive="active-link">Servicios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/capturas" routerLinkActive="active-link">Capturas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/colonias" routerLinkActive="active-link">Colonias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/fichas" routerLinkActive="active-link">Fichas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin" routerLinkActive="active-link">Admin</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <router-outlet></router-outlet>

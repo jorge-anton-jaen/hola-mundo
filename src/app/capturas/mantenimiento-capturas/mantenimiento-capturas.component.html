@@ -1,47 +1,53 @@
-
 <div class="contenedor-capturas">
   <h1>Mantenimiento de Capturas</h1>
   <p>Administra las capturas de gatos en colonias.</p>
-<div class="filtro-capturas">
-  <mat-form-field appearance="outline">
-    <mat-label>Buscar por fecha</mat-label>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="filtroFecha" (dateChange)="filtrar()">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Buscar por gato</mat-label>
-    <input matInput [(ngModel)]="filtroGato" (input)="filtrar()" placeholder="Nombre del gato">
-  </mat-form-field>
-  <button mat-flat-button color="primary" (click)="abrirDialogoNuevaCaptura()">Añadir Captura</button>
-</div>
+  <div class="filtro-capturas">
+    <div class="mb-3">
+      <label class="form-label">Buscar por fecha</label>
+      <input type="date" class="form-control" [(ngModel)]="filtroFecha" (change)="filtrar()">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Buscar por gato</label>
+      <input type="text" class="form-control" [(ngModel)]="filtroGato" (input)="filtrar()" placeholder="Nombre del gato">
+    </div>
+    <button class="btn btn-primary" (click)="abrirDialogoNuevaCaptura()">
+      <i class="bi bi-plus"></i>
+      Añadir Captura
+    </button>
+  </div>
 
-<table mat-table [dataSource]="capturasFiltradas" class="mat-elevation-z8">
-  <ng-container matColumnDef="fecha">
-    <th mat-header-cell *matHeaderCellDef>Fecha</th>
-    <td mat-cell *matCellDef="let captura">{{ captura.fechaCaptura | date }}</td>
-  </ng-container>
-  <ng-container matColumnDef="gatos">
-    <th mat-header-cell *matHeaderCellDef>Gatos</th>
-    <td mat-cell *matCellDef="let captura">
-      <span *ngFor="let gato of captura.gatos; let last = last">
-        {{ gato.nombre }}<span *ngIf="!last">, </span>
-      </span>
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="acciones">
-    <th mat-header-cell *matHeaderCellDef>Acciones</th>
-    <td mat-cell *matCellDef="let captura">
-      <button mat-icon-button color="primary" (click)="editarCaptura(captura)">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-icon-button color="warn" (click)="eliminarCaptura(captura)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </td>
-  </ng-container>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Gatos</th>
+        <th>Fecha de Captura</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let captura of capturasFiltradas">
+        <td>
+          <span *ngFor="let gato of captura.gatos; let last = last">
+            {{ gato.nombre }}<span *ngIf="!last">, </span>
+          </span>
+        </td>
+        <td>{{ captura.fechaCaptura | date }}</td>
+        <td>
+          <button class="btn btn-sm btn-outline-primary me-1" (click)="editarCaptura(captura)">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button class="btn btn-sm btn-outline-danger" (click)="eliminarCaptura(captura)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-  <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-  <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
-</table>
+  <app-formulario-captura
+    *ngIf="mostrarFormularioCaptura"
+    [captura]="capturaEditando"
+    (guardar)="guardarCaptura($event)"
+    (cancelar)="cerrarFormularioCaptura()">
+  </app-formulario-captura>
 </div>

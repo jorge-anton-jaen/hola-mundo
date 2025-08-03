@@ -14,3 +14,31 @@ form {
   gap: 12px;
   justify-content: flex-end;
 }
+
+.modal-content {
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.modal-header {
+  background: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.modal-footer {
+  background: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+}
+
+.campo label {
+  font-weight: 500;
+}
+
+.campo input {
+  font-size: 1rem;
+}
