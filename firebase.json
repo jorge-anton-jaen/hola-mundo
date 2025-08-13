@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "dist/capturas-app/browser",
+    "site": "broco-capturas",
     "ignore": [
       "firebase.json",
       "**/.*",
