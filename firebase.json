@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "dist/capturas-app/browser",
+    "site": "riggle-c3ce7-e6b49",
     "ignore": [
       "firebase.json",
       "**/.*",
