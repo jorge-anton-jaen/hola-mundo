@@ -27,26 +27,29 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let servicio of serviciosFiltrados">
-        <td>{{ servicio.aviso }}</td>
-        <td>{{ servicio.fechaInicio | date }}</td>
-        <td>{{ servicio.fechaFin | date }}</td>
-        <td>{{ servicio.poblacion }}</td>
-        <td>
-          <button class="btn btn-sm btn-outline-primary me-1" (click)="editarServicio(servicio)">
-            <i class="bi bi-plus"></i>
-          </button>
-          <button class="btn btn-sm btn-outline-danger" (click)="eliminarServicio(servicio)">
-            <i class="bi bi-plus"></i>
-          </button>
-        </td>
-      </tr>
+      @for (servicio of serviciosFiltrados; track servicio) {
+        <tr>
+          <td>{{ servicio.aviso }}</td>
+          <td>{{ servicio.fechaInicio | date }}</td>
+          <td>{{ servicio.fechaFin | date }}</td>
+          <td>{{ servicio.poblacion }}</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary me-1" (click)="editarServicio(servicio)">
+              <i class="bi bi-plus"></i>
+            </button>
+            <button class="btn btn-sm btn-outline-danger" (click)="eliminarServicio(servicio)">
+              <i class="bi bi-plus"></i>
+            </button>
+          </td>
+        </tr>
+      }
     </tbody>
   </table>
 
-  <app-formulario-servicio
-  *ngIf="mostrarFormularioServicio"
-  [servicio]="servicioEditando"
-  (cancelar)="cerrarFormularioServicio()">
-</app-formulario-servicio>
+  @if (mostrarFormularioServicio) {
+    <app-formulario-servicio
+      [servicio]="servicioEditando"
+      (cancelar)="cerrarFormularioServicio()">
+    </app-formulario-servicio>
+  }
 </div>

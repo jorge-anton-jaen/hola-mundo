@@ -25,11 +25,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let captura of capturasFiltradas">
-        <td>
-          <span *ngFor="let gato of captura.gatos; let last = last">
-            {{ gato.nombre }}<span *ngIf="!last">, </span>
-          </span>
+      @for (captura of capturasFiltradas; track captura) {
+        <tr>
+          <td>
+            @for (gato of captura.gatos; track gato; let last = $last) {
+              <span>
+                {{ gato.nombre }}@if (!last) {
+                <span>, </span>
+              }
+            </span>
+          }
         </td>
         <td>{{ captura.fechaCaptura | date }}</td>
         <td>
@@ -41,13 +46,15 @@
           </button>
         </td>
       </tr>
-    </tbody>
-  </table>
+    }
+  </tbody>
+</table>
 
+@if (mostrarFormularioCaptura) {
   <app-formulario-captura
-    *ngIf="mostrarFormularioCaptura"
     [captura]="capturaEditando"
     (guardar)="guardarCaptura($event)"
     (cancelar)="cerrarFormularioCaptura()">
   </app-formulario-captura>
+}
 </div>

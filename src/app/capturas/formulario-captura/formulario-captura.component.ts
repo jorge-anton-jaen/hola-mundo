@@ -1,14 +1,13 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-captura',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule
-  ],
+],
   templateUrl: './formulario-captura.component.html',
   styleUrls: ['./formulario-captura.component.css']
 })

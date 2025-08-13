@@ -1,14 +1,13 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-servicio',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule
-  ],
+],
   templateUrl: './formulario-servicio.component.html',
   styleUrls: ['./formulario-servicio.component.css']
 })

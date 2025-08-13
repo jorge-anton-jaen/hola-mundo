@@ -23,12 +23,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let colonia of coloniasFiltradas">
-        <td>{{ colonia.localizacion }}</td>
-        <td>
-          <span *ngFor="let gato of colonia.gatos; let last = last">
-            {{ gato.nombre }}<span *ngIf="!last">, </span>
-          </span>
+      @for (colonia of coloniasFiltradas; track colonia) {
+        <tr>
+          <td>{{ colonia.localizacion }}</td>
+          <td>
+            @for (gato of colonia.gatos; track gato; let last = $last) {
+              <span>
+                {{ gato.nombre }}@if (!last) {
+                <span>, </span>
+              }
+            </span>
+          }
         </td>
         <td>{{ colonia.fechaInicio | date }}</td>
         <td>{{ colonia.fechaRevision | date }}</td>
@@ -41,13 +46,15 @@
           </button>
         </td>
       </tr>
-    </tbody>
-  </table>
+    }
+  </tbody>
+</table>
 
+@if (mostrarFormularioColonia) {
   <app-formulario-colonia
-    *ngIf="mostrarFormularioColonia"
     [colonia]="coloniaEditando"
     (guardar)="guardarColonia($event)"
     (cancelar)="cerrarFormularioColonia()">
   </app-formulario-colonia>
+}
 </div>
